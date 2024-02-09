@@ -7,25 +7,25 @@ import Footer from "../components/Footer.astro";
 const videoArray = [
 	{
 		title: 'team LATAM',
-		link: 'https://www.youtube.com/watch?v=lD8eAQ4ieEw',
-		placeholder: 'experiencia.png',
+		link: 'https://www.youtube.com/embed/u31qwQUeGuM?si=rzUwbK-D4JPCgUWF"',
+		placeholder: 'team-latam.png',
 		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
 	},
 	{
 		title: 'travel meets fashion',
-		link: 'https://www.youtube.com/watch?v=CDzm3UPjk8c',
-		placeholder: 'experiencia.png',
+		link: 'https://www.youtube.com/embed/MLpWrANjFbI?si=88g2zAUBBVzf6D0l',
+		placeholder: 'velocidad-riesgo.png',
 		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
 	},
 	{
 		title: 'velocidad y riesgo',
-		link: 'https://www.youtube.com/watch?v=8Zplj1KFa3U',
-		placeholder: 'experiencia.png',
+		link: 'https://www.youtube.com/embed/pygGug3TCaI?si=T8iK7RqfLbjMzZSB',
+		placeholder: 'travel-meets-fashion.png',
 		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
 	},
 	{
 		title: 'experiencia multimedia',
-		link: 'https://www.youtube.com/watch?v=eoTtVzNZuHc',
+		link: 'https://www.youtube.com/embed/eEzD-Y97ges?si=L2PsHbzqEOSnohgh',
 		placeholder: 'experiencia.png',
 		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
 	},
@@ -42,10 +42,53 @@ const videoArray = [
 		<Hero/>
 		
 		<ul role="list" class="link-card-grid">
-
+			{
+				videoArray.map(video => (
+					<li class="video-list">
+						<article>
+							<img src={"imgs/placeholder/"+video.placeholder} alt={video.link} />
+							<p>{video.text}</p>
+						</article>
+						<h4>{video.title}</h4>
+					</li>
+				))
+			}
 		</ul>
 
 		<Footer/>
 	</main>
 </Layout>
+<script>
+
+function changeSrcHero(event) {
+  const clickedElement = event.target;
+
+  const videoUrl = clickedElement.alt;
+
+  const iframeElement = document.querySelector('iframe');
+
+  // Se verifica si se encontró el iframe y si la URL no está vacía
+  if (iframeElement && videoUrl) {
+    // Cambia la URL del iframe con la URL de la imagen
+    iframeElement.src = videoUrl;
+	document.documentElement.scrollTop = 200;
+
+    // Reproduce automáticamente el video si es compatible
+    // const iframeDocument = iframeElement.contentDocument || iframeElement.contentWindow?.document;
+    // if (iframeDocument && typeof iframeDocument.play === 'function') {
+    //   iframeDocument.play();
+    // }
+  }
+}
+
+	let listVideos = document.querySelectorAll(".video-list");
+
+	// Itera sobre la NodeList y agrega el evento a cada elemento
+	if (listVideos.length > 0) {
+		listVideos.forEach(function(video) {
+			video.addEventListener("click", changeSrcHero);
+		});
+	}
+
+</script>
 
