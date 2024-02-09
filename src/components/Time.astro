@@ -21,13 +21,40 @@ const { timeType } = Astro.props;
         height: 100px;
         border-radius: 300px;
         border: 3px solid var(--light);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 	}
     .link-card h5{
         font-size: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     .link-card p{
         font-size: 1.2rem;
         font-weight: bold;
         text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    @media (max-width: 650px) {
+        .link-card {
+            width: 80px;
+            height: 80px;
+        }
+        .link-card h5{
+            font-size: 1.7rem;
+        }
+        .link-card h5{
+            font-size: 1rem;
+        }
+    }
+    @media (max-width: 410px) {
+        .link-card {
+            width: 100px;
+            height: 100px;
+        }
+        .link-card h5{
+            font-size: 2.2rem;
+        }
+        .link-card h5{
+            font-size: 1.4rem;
+        }
     }
 </style>

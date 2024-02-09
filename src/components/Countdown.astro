@@ -56,6 +56,18 @@ import Time from "./Time.astro";
         gap: 30px;
         justify-content: center;
         align-items: center;
-        margin: 40px 6%;
+        flex-wrap: wrap;
+        margin: 40px auto;
+        max-width: 100%;
+    }
+    @media (max-width: 900px) {
+        .contador{
+           gap: 20px;
+        }
+    }
+    @media (max-width: 550px) {
+        .contador{
+           gap: 10px;
+        }
     }
 </style>

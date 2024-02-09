@@ -1,0 +1,29 @@
+<header>
+    <img src="imgs/header/logo-sochi.png" alt="Logo Sochi">
+    <img src="imgs/header/logo-claro-sports.png" alt="Logo Claro Sports">
+</header>
+<style>
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 88%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--dark);
+        border-bottom: 3px solid var(--accent);
+        padding: 10px 6%;
+        z-index: 99;
+    }
+    header img{
+        width: auto;
+        height: 60px;
+    }
+
+    @media (max-width: 550px) {
+        header img{
+            height: 40px;
+        }
+    }
+</style>
