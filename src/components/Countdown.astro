@@ -1,0 +1,61 @@
+---
+import Time from "./Time.astro";
+---
+
+<div class="contador">
+    <Time timeType="dias" />
+    <Time timeType="hrs" />
+    <Time timeType="min" />
+    <Time timeType="seg" />
+</div>
+<script>
+    // Funcion que actualiza el tiempo segun su nombre de clase ya que este coincide con el timeType
+    function updateElementContent(selector, value) {
+        const element = document.querySelector(selector);
+        if (element) {
+            const h5Element = element.querySelector("h5");
+            if (h5Element) {
+                const formattedValue = value < 10 ? `0${value}` : value;
+                h5Element.textContent = formattedValue.toString();
+            }
+        }
+    }
+
+    // Aqui se setea la fecha limite del contador
+    let countdownDate = new Date("2024-12-31T23:59:59").getTime();
+
+    // Funcion que actualiza el tiempo
+    function updateCountdown() {
+        // Obtner fecha actual
+        const now = new Date().getTime();
+        const timeDifference = countdownDate - now;
+
+        // Se calculan y decaran las variables de pendiendo de la medida de tiempo qie se necesita
+        let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        let hours = Math.floor(
+            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        let minutes = Math.floor(
+            (timeDifference % (1000 * 60 * 60)) / (1000 * 60),
+        );
+        let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Actualizar los elementos segun su clase y resultado de calculo
+        updateElementContent(".dias", days);
+        updateElementContent(".hrs", hours);
+        updateElementContent(".min", minutes);
+        updateElementContent(".seg", seconds);
+    }
+
+    // Repeticion de funcion cada segundo para que se actualize el contador
+    setInterval(updateCountdown, 1000);
+</script>
+<style>
+    .contador {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 6%;
+    }
+</style>

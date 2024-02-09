@@ -1,0 +1,33 @@
+---
+interface Props {
+	timeType: string;
+}
+
+const { timeType } = Astro.props;
+---
+
+<li class={`${timeType} link-card`}>
+	<h5>00</h5>
+    <p>{timeType}</p>
+</li>
+<style>
+	.link-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+		color: var(--light);
+        width: 100px;
+        height: 100px;
+        border-radius: 300px;
+        border: 3px solid var(--light);
+	}
+    .link-card h5{
+        font-size: 2rem;
+    }
+    .link-card p{
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+</style>
