@@ -1,0 +1,109 @@
+---
+import VideoCard from "../components/VideoCard.astro";
+
+const videoArray = [
+    {
+        title: "team LATAM",
+        link: 'https://www.youtube.com/embed/u31qwQUeGuM?si=rzUwbK-D4JPCgUWF?autoplay=1"',
+        placeholder: "team-latam.png",
+        text: "Los Deportistas Latinoamaericanos que participaran en Sochi 2014.",
+    },
+    {
+        title: "travel meets fashion",
+        link: "https://www.youtube.com/embed/MLpWrANjFbI?si=88g2zAUBBVzf6D0l?autoplay=1",
+        placeholder: "velocidad-riesgo.png",
+        text: "Los Deportistas Latinoamaericanos que participaran en Sochi 2014.",
+    },
+    {
+        title: "velocidad y riesgo",
+        link: "https://www.youtube.com/embed/pygGug3TCaI?si=T8iK7RqfLbjMzZSB?autoplay=1",
+        placeholder: "travel-meets-fashion.png",
+        text: "Los Deportistas Latinoamaericanos que participaran en Sochi 2014.",
+    },
+    {
+        title: "experiencia multimedia",
+        link: "https://www.youtube.com/embed/eEzD-Y97ges?si=L2PsHbzqEOSnohgh?autoplay=1",
+        placeholder: "experiencia.png",
+        text: "Los Deportistas Latinoamaericanos que participaran en Sochi 2014.",
+    },
+];
+---
+
+<section class="video-section">
+    <h1>claro sports en sochi 2014</h1>
+    <ul class="link-card-grid">
+        {videoArray.map((video) => <VideoCard video={video} />)}
+    </ul>
+</section>
+<style>
+    .video-section {
+        padding: 40px 6%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    .video-section h1 {
+        color: var(--light);
+        font-size: 3rem;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+    .link-card-grid {
+        display: flex;
+        gap: 30px;
+        list-style-type: none;
+        margin-block: 0px;
+        margin-inline: 0px;
+        padding-inline-start: 0px;
+        color: var(--light);
+    }
+</style>
+<script>
+    function changeSrcHero() {
+        const clickedElement = this;
+        const articleElement = clickedElement.querySelector("article");
+        const imgElement = clickedElement.querySelector("img");
+        const videoUrl = imgElement.alt;
+        const iframeElement = document.querySelector("iframe");
+
+        // Se verifica si se encontró el iframe y si la URL no está vacía
+        if (iframeElement && videoUrl) {
+            // Cambia la URL del iframe con la URL de la imagen
+            iframeElement.src = videoUrl;
+
+            // Iniciar la reproducción automáticamente
+            if (iframeElement.contentWindow && iframeElement.contentWindow.postMessage) {
+                iframeElement.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
+
+            document.documentElement.scrollTop = 250;
+        }
+
+        // Quitar la clase 'selected' de todos los elementos con la clase 'video-list'
+        document.querySelectorAll(".video-list").forEach(function (video) {
+            let childArticle = video.querySelector("article")
+            childArticle && childArticle.classList.remove("selected");
+        });
+
+        // // Agregar la clase 'selected' al 'article' dentro del elemento clicado
+        if (articleElement) {
+            articleElement.classList.add("selected");
+        }
+    }
+
+    let listVideos = document.querySelectorAll(".video-list");
+
+    // Itera sobre la NodeList y agrega el evento a cada elemento
+    if (listVideos.length > 0) {
+        listVideos.forEach(function (video) {
+            video.addEventListener("click", changeSrcHero);
+        });
+
+        // Agrega la clase 'selected' al primer 'article' dentro del primer elemento con la clase 'video-list'
+        const firstArticle = listVideos[0].querySelector("article");
+        if (firstArticle) {
+            firstArticle.classList.add("selected");
+        }
+    }
+</script>
