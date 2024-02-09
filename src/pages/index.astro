@@ -1,9 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Countdown from "../components/Countdown.astro";
+import Hero from "../layouts/Hero.astro";
 import Header from "../components/Header.astro";
-import Video from "../components/Video.astro";
 import Footer from "../components/Footer.astro";
+
+const videoArray = [
+	{
+		title: 'team LATAM',
+		link: 'https://www.youtube.com/watch?v=lD8eAQ4ieEw',
+		placeholder: 'experiencia.png',
+		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
+	},
+	{
+		title: 'travel meets fashion',
+		link: 'https://www.youtube.com/watch?v=CDzm3UPjk8c',
+		placeholder: 'experiencia.png',
+		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
+	},
+	{
+		title: 'velocidad y riesgo',
+		link: 'https://www.youtube.com/watch?v=8Zplj1KFa3U',
+		placeholder: 'experiencia.png',
+		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
+	},
+	{
+		title: 'experiencia multimedia',
+		link: 'https://www.youtube.com/watch?v=eoTtVzNZuHc',
+		placeholder: 'experiencia.png',
+		text: 'Los Deportistas Latinoamaericanos que participaran en Sochi 2014.'
+	},
+]
 ---
 
 <Layout
@@ -12,46 +38,14 @@ import Footer from "../components/Footer.astro";
 >
 	<main>
 		<Header />
-		<section class="hero">
-			<h1>Faltan</h1>
-			<Countdown />
-			<Video src="mi-video.mp4"/>
-		</section>
-		<ul role="list" class="link-card-grid"></ul>
+		
+		<Hero/>
+		
+		<ul role="list" class="link-card-grid">
+
+		</ul>
+
 		<Footer/>
 	</main>
 </Layout>
 
-<style>
-	h1 {
-		font-size: 3rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1rem;
-		color: var(--light);
-		text-transform: uppercase;
-		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-	}
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		background-image: url("imgs/background/background.jpg");
-		background-size: cover;
-		background-position: top;
-		background-repeat: no-repeat;
-		padding: 160px 12% 80px;
-		min-height: calc(100vh - 160px);
-	}
-
-	@media (max-width: 550px) {
-        h1{
-            font-size: 2rem;
-        }
-		.hero{
-			padding: 100px 6% 80px;
-		}
-    }
-</style>

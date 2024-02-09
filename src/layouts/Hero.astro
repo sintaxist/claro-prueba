@@ -1,0 +1,43 @@
+---
+import Countdown from "../components/Countdown.astro";
+import Video from "../components/Video.astro";
+---
+
+<section class="hero">
+    <h1>Faltan</h1>
+    <Countdown />
+    <Video src="mi-video.mp4"/>
+</section>
+<style>
+	h1 {
+		font-size: 3rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1rem;
+		color: var(--light);
+		text-transform: uppercase;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	}
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-image: url("../../public/imgs/background/background.jpg");
+		background-size: cover;
+		background-position: top;
+		background-repeat: no-repeat;
+		padding: 160px 12% 80px;
+		min-height: calc(100vh - 160px);
+	}
+
+	@media (max-width: 550px) {
+        h1{
+            font-size: 2rem;
+        }
+		.hero{
+			padding: 100px 6% 80px;
+		}
+    }
+</style>
