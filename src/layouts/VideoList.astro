@@ -48,15 +48,23 @@ const videoArray = [
         font-size: 3rem;
         font-weight: normal;
         text-transform: uppercase;
+        text-align: center;
     }
     .link-card-grid {
         display: flex;
+        justify-content: center;
         gap: 30px;
         list-style-type: none;
+        flex-wrap: wrap;
         margin-block: 0px;
         margin-inline: 0px;
         padding-inline-start: 0px;
         color: var(--light);
+    }
+    @media (max-width: 550px) {
+        .link-card-grid{
+            gap: 15px;
+        }
     }
 </style>
 <script>
@@ -71,12 +79,6 @@ const videoArray = [
         if (iframeElement && videoUrl) {
             // Cambia la URL del iframe con la URL de la imagen
             iframeElement.src = videoUrl;
-
-            // Iniciar la reproducción automáticamente
-            if (iframeElement.contentWindow && iframeElement.contentWindow.postMessage) {
-                iframeElement.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            }
-
             document.documentElement.scrollTop = 250;
         }
 
